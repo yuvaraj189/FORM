@@ -1,23 +1,22 @@
-import React from 'react';
-import './App.css';
-import Frontend from './components/frontend'; // Import the form component
+import React from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Frontend from "./components/Frontend"; // Add Employee form
+import EmployeeList from "./components/EmployeeList"; // View Employees page
+import Header from "./components/Header"; // Header with View Employees button
+import Footer from "./components/Footer"; // Footer component
 
 function App() {
   return (
-    <div className="App bg-gray-100 min-h-screen">
-      <header className="bg-blue-500 text-white text-center p-4">
-        <h1 className="text-3xl font-bold">Employee Management System</h1>
-      </header>
-
-      <main className="flex justify-center items-center mt-8">
-        {/* Embed the employee form */}
-        <Frontend />
+    <Router>
+      <Header />
+      <main className="min-h-screen">
+        <Routes>
+          <Route path="/" element={<Frontend />} />
+          <Route path="/employees" element={<EmployeeList />} />
+        </Routes>
       </main>
-
-      <footer className="bg-blue-500 text-white text-center p-4 mt-8">
-        <p>&copy; {new Date().getFullYear()} Employee Management System</p>
-      </footer>
-    </div>
+      <Footer />
+    </Router>
   );
 }
 

@@ -65,5 +65,13 @@ app.post(
     }
   }
 );
+app.get('/employees', async (req, res) => {
+  try {
+    const [rows] = await db.query('SELECT * FROM Employees');
+    res.status(200).json(rows); // Send employee data as a JSON response
+  } catch (error) {
+    res.status(500).json({ message: 'Server error', error: error.message });
+  }
+});
 
 app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
