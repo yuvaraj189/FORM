@@ -1,0 +1,30 @@
+
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: employee_backend
+    ports:
+      - "5000:5000"
+    environment:
+      - DB_HOST=db
+      - DB_USER=root
+      - DB_PASSWORD=yuvaraj093
+      - DB_NAME=employee_management
+    depends_on:
+      - db
+
+  db:
+    image: mysql:8
+    container_name: employee_db
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: yuvaraj093
+      MYSQL_DATABASE: employee_management
+    volumes:
+      - db_data:/var/lib/mysql
+
+volumes:
+  db_data:

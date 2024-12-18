@@ -11,10 +11,10 @@ app.use(express.json());
 
 // Database connection
 const db = mysql.createPool({
-  host: 'localhost',
-  user: 'root',
-  password: 'yuvaraj093',
-  database: 'employee_management',
+  host: process.env.DB_HOST || "localhost",
+  user: process.env.DB_USER || "root",
+  password: process.env.DB_PASSWORD || "yuvaraj093",
+  database: process.env.DB_NAME || "employee_management",
 });
 
 // API to add employee
